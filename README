@@ -1,0 +1,50 @@
+Apache Spark Streaming with Kafka and Cassandra
+This repository contains Python code for streaming data from Apache Kafka to Apache Cassandra using Apache Spark. The code demonstrates how to:
+
+Create a Spark session for streaming.
+Connect to Kafka to consume messages.
+Parse and select relevant fields from Kafka messages.
+Insert the selected data into Cassandra.
+Prerequisites
+Apache Cassandra installed and running on localhost.
+Apache Kafka installed and running on localhost.
+Apache Spark installed.
+Setup
+Install required Python packages:
+
+bash
+Copy code
+pip install pyspark cassandra-driver
+Ensure Cassandra, Kafka, and Spark are running.
+
+Create a Kafka topic named users_created.
+
+Usage
+Run the Python script spark_streaming.py:
+
+bash
+Copy code
+python spark_streaming.py
+The script will create a Spark streaming application that reads data from the users_created Kafka topic and inserts it into the created_users table in the spark_streams keyspace of Cassandra.
+
+Configuration
+Modify the script if your setup requires different configurations. Key configurations are found at the beginning of the script:
+
+Kafka bootstrap servers: 'localhost:9092'
+Cassandra host: 'localhost'
+Kafka topic: 'users_created'
+Cassandra keyspace: 'spark_streams'
+Cassandra table: 'created_users'
+Logging
+Logging is implemented using the Python logging module. Log messages will be displayed in the console. Adjust the logging configuration in the script according to your preferences.
+
+Notes
+This script uses the Spark Cassandra Connector for writing to Cassandra. Ensure the connector version matches your Spark version.
+
+Data schema is defined in the create_table function in the script. Modify it according to your data structure.
+
+Check the checkpoint location (/tmp/checkpoint) and adjust it as needed.
+
+The script reads data from Kafka, processes it using Spark, and writes it to Cassandra in a streaming manner. Ensure that the necessary dependencies are installed.
+
+Feel free to adapt the script to fit your specific use case and environment.

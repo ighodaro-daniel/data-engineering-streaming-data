@@ -1,0 +1,25 @@
+[2024-01-13T14:50:01.677+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: one_task.single_task manual__2024-01-13T14:49:59.515583+00:00 [queued]>
+[2024-01-13T14:50:01.687+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: one_task.single_task manual__2024-01-13T14:49:59.515583+00:00 [queued]>
+[2024-01-13T14:50:01.687+0000] {taskinstance.py:2171} INFO - Starting attempt 1 of 1
+[2024-01-13T14:50:01.715+0000] {taskinstance.py:2192} INFO - Executing <Task(BashOperator): single_task> on 2024-01-13 14:49:59.515583+00:00
+[2024-01-13T14:50:01.725+0000] {standard_task_runner.py:60} INFO - Started process 74713 to run task
+[2024-01-13T14:50:01.731+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'one_task', 'single_task', 'manual__2024-01-13T14:49:59.515583+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/one_task_dag.py', '--cfg-path', '/tmp/tmpntw19_vg']
+[2024-01-13T14:50:01.734+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask single_task
+[2024-01-13T14:50:01.806+0000] {task_command.py:423} INFO - Running <TaskInstance: one_task.single_task manual__2024-01-13T14:49:59.515583+00:00 [running]> on host 855f933b925b
+[2024-01-13T14:50:01.907+0000] {taskinstance.py:2481} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='daniel' AIRFLOW_CTX_DAG_ID='one_task' AIRFLOW_CTX_TASK_ID='single_task' AIRFLOW_CTX_EXECUTION_DATE='2024-01-13T14:49:59.515583+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-01-13T14:49:59.515583+00:00'
+[2024-01-13T14:50:01.910+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-01-13T14:50:01.912+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'echo "hello learener" > /data-engineering-project1/lab/file.txt']
+[2024-01-13T14:50:01.936+0000] {subprocess.py:86} INFO - Output:
+[2024-01-13T14:50:01.937+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 1: /data-engineering-project1/lab/file.txt: No such file or directory
+[2024-01-13T14:50:01.938+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2024-01-13T14:50:01.949+0000] {taskinstance.py:2699} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2024-01-13T14:50:01.953+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=one_task, task_id=single_task, execution_date=20240113T144959, start_date=20240113T145001, end_date=20240113T145001
+[2024-01-13T14:50:01.969+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task single_task (Bash command failed. The command returned a non-zero exit code 1.; 74713)
+[2024-01-13T14:50:01.983+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-01-13T14:50:02.016+0000] {taskinstance.py:3281} INFO - 0 downstream tasks scheduled from follow-on schedule check
